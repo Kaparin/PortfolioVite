@@ -1,4 +1,4 @@
-import { createGlobalStyle} from "styled-components";
+import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -57,6 +57,9 @@ const GlobalStyle = createGlobalStyle`
     h1, h2,
     h3, h4 {
         text-wrap: balance;
+        font-family: Inter,serif;
+        font-weight: 700;
+        
     }
 
     /* A elements that don't have a class get default styles */
@@ -98,7 +101,7 @@ const GlobalStyle = createGlobalStyle`
         
     }
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-style: normal;
         font-weight: 500;
         line-height: 123.6%; /* 22.248px */
@@ -109,13 +112,22 @@ const GlobalStyle = createGlobalStyle`
 
         /* H3 - 24px */
         font-family: Inter,serif;
-        font-size: 24px;
+        font-size: 1.1rem;
         font-style: normal;
         font-weight: 600;
         line-height: 123.6%; /* 29.664px */
         text-transform: capitalize;
     }
-    
+    h5 {
+        color: #2B2B2B;
+        /* H4 - 18px */
+        font-family: Inter,serif;
+        font-size: 0.9rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 123.6%; /* 22.248px */
+        text-transform: capitalize;
+    }
 
 `
 export default GlobalStyle;
