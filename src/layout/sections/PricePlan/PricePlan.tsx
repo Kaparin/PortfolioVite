@@ -1,8 +1,44 @@
-import React from 'react';
 import {ContainerDescription} from "../../../components/ContainerDescription";
-import styled from "styled-components";
+import {
+    ButtonPlan,
+    PlanCard,
+    PlanContainer,
+    PlanSection
+} from "../../../components/StylesForComponents/PricePlanStyles.ts";
 import {Icon} from "../../../components/icons/Icon";
 
+const planCardData = [
+    {
+        id: 'SilverPlan',
+        title: "silver",
+        price: "$0.00",
+        description: `For most businesses that want to
+        optimize web queries`,
+        included: ["UI Design", "web development"],
+        notIncluded: ["logo design", "seo optimization", "wordPress integration","5 Websites","unlimited user","20 gB bandwith"],
+        highlighted: false
+    },
+    {
+        id: 'GoldPlan',
+        title: "gold",
+        price: "$50.00",
+        description: `For most businesses that want to
+        optimize web queries`,
+        included: ["UI Design", "web development", "logo design", "seo optimization"],
+        notIncluded: ["wordPress integration","5 Websites","unlimited user","20 gB bandwith"],
+        highlighted: true
+    },
+    {
+        id: 'DiamondPlan',
+        title: "diamond",
+        price: "$80.00",
+        description: `For most businesses that want to
+        optimize web queries`,
+        included: ["UI Design", "web development", "logo design", "seo optimization", "wordPress integration","5 Websites","unlimited user","20 gB bandwith"],
+        notIncluded: [],
+        highlighted: false
+    },
+]
 export const PricePlan = () => {
     return (
         <PlanSection>
@@ -13,7 +49,30 @@ export const PricePlan = () => {
                 </p>
             </ContainerDescription>
             <PlanContainer>
-                <PlanCard>
+                {planCardData.map((planData) => (
+                    <PlanCard key={planData.id} highlighted={planData.highlighted} shadow={planData.highlighted ? "0px 0px 10px 0px rgba(0, 0, 0, 0.15)" : undefined}>
+                        <h4>{planData.title}</h4>
+                        <p><span>{planData.price}</span>/Hour</p>
+                        <p>{planData.description}</p>
+                        <ul>
+                            {planData.included.map((include) => (
+                                <li key={include}><Icon iconId="Check" width="24" height="24" fill="#FFB400"/>{include}</li>
+                            ))}
+                            {planData.notIncluded.map((notInclude)=> (
+                                <li key={notInclude}><Icon iconId="Close" width="24" height="24"/>{notInclude}</li>
+                            ))}
+                        </ul>
+                        <ButtonPlan background="#FFB400">ORDER NOW</ButtonPlan>
+                    </PlanCard>
+                ))}
+            </PlanContainer>
+
+        </PlanSection>
+    );
+};
+
+                {/*Это старый и ёмкий вариант, который мне удалось сократить с помощью .map*/}
+                {/*<PlanCard>
                     <h4>silver</h4>
                     <p><span> $0.00 </span>/Hour</p>
                     <p> For most businesses that want to
@@ -28,7 +87,7 @@ export const PricePlan = () => {
                         <li><Icon iconId="Close" width="24" height="24"/>unlimited user</li>
                         <li><Icon iconId="Close" width="24" height="24"/>20 gB bandwith</li>
                     </ul>
-                    <ButtonPlan  color="#FFB400">ORDER NOW</ButtonPlan>
+                    <ButtonPlan color="#FFB400">ORDER NOW</ButtonPlan>
                 </PlanCard>
                 <PlanCard highlighted shadow="0px 0px 10px 0px rgba(0, 0, 0, 0.15)">
                     <h4>gold</h4>
@@ -62,119 +121,6 @@ export const PricePlan = () => {
                         <li><Icon iconId="Check" width="24" height="24" fill="#FFB400"/>unlimited user</li>
                         <li><Icon iconId="Check" width="24" height="24" fill="#FFB400"/>20 gB bandwidth</li>
                     </ul>
-                    <ButtonPlan  color="#FFB400"> ORDER NOW</ButtonPlan>
-                </PlanCard>
-            </PlanContainer>
+                    <ButtonPlan color="#FFB400"> ORDER NOW</ButtonPlan>
+                </PlanCard>*/}
 
-        </PlanSection>
-    );
-};
-export const PlanSection = styled.section`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5rem;
-`
-export const PlanContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
-
-`
-
-type PlanCardProps = {
-    highlighted?: boolean;
-    children?: React.ReactNode;
-    shadow?: string;
-};
-export const PlanCard = styled.div<PlanCardProps>`
-    flex: 0 1 30%;
-    position: relative;
-    max-width: 310px;
-    padding: 3rem 1.9rem 1.5rem;
-    margin: 2rem auto 0;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: ${props => props.shadow};
-
-
-
-    span {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #2B2B2B;
-    }
-
-    h4 {
-        margin-bottom: 1rem;
-    }
-
-    ul {
-        padding: 0;
-
-    }
-
-    li {
-        display: flex;
-        align-items: center;
-        text-align: left;
-
-        & > svg {
-            margin-right: 1rem;
-        }
-    }
-
-    ${({highlighted}) =>
-            highlighted && `
- &::before {
-      content: 'most popular';
-      position: absolute;
-      top: 0; 
-      left: 0;
-      right: 0;
-      height: 2rem; 
-      background-color: #FFB400;
-      z-index: 2; 
-      display: flex;
-      justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-        font-weight: 400;
-        text-transform: capitalize;
-        
-    }
-  `}
-`;
-type ButtonPlanProps = {
-    background?: string;
-    children?: React.ReactNode;
-    color?: string
-    hoverColor?: string
-
-}
-export const ButtonPlan = styled.button <ButtonPlanProps>`
-    border-radius: 30px;
-    width: 10rem;
-    height: 2rem;
-    background: ${props => props.background || "white"};
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
-    color: #2B2B2B;
-    border: none;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: capitalize;
-    transition: transform 0.3s ease-in-out;
-
-    &:hover {
-        cursor: pointer;
-        color: ${props => props.color};
-        background-color: ${props => props.hoverColor || "#E4E6EB"};
-    }
-`

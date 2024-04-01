@@ -1,8 +1,59 @@
-import React from 'react';
-
 import {ContainerDescription} from "../../../components/ContainerDescription";
-import styled from "styled-components";
 import {Icon} from '../../../components/icons/Icon';
+import {
+    BackSide,
+    CardButton,
+    CardInner,
+    FrontSide,
+    ServiceCardStyled,
+    ServicesContainer
+} from "../../../components/StylesForComponents/ServicesStyles.ts";
+
+const serviceCardData = [{
+
+    id: "Services_card1",
+    iconId: "Advertising",
+    title: "advertising",
+    description: "dolor sit amet",
+    backDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a urna viverra morbi."
+},
+    {
+        id: "Services_card2",
+        iconId: "Microphone",
+        title: "sound design",
+        description: "Voice Over, Beat Making",
+        backDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a urna viverra morbi."
+    },
+    {
+        id: "Services_card3",
+        iconId: "Photographer",
+        title: "photography",
+        description: "portrait, product photography",
+        backDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a urna viverra morbi."
+    },
+    {
+        id: "Services_card4",
+        iconId: "coding",
+        title: "web development",
+        description: "blog, e-commerce",
+        backDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a urna viverra morbi."
+    },
+    {
+        id: "Services_card5",
+        iconId: "game-development",
+        title: "game design",
+        description: "Character Design, Props & Objects",
+        backDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a urna viverra morbi."
+    },
+    {
+        id: "Services_card6",
+        iconId: "illustration",
+        title: "uI/uX design",
+        description: "Mobile app, website design",
+        backDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a urna viverra morbi."
+    },
+
+];
 
 export const Services = () => {
     return (
@@ -14,7 +65,29 @@ export const Services = () => {
                 </p>
             </ContainerDescription>
             <ServicesContainer>
-                <ServiceCard>
+                {serviceCardData.map((cardData) => (
+                    <ServiceCardStyled key={cardData.id}>
+                        <CardInner>
+                            <FrontSide>
+                                <Icon iconId={cardData.iconId} width="74px" height="74px"/>
+                                <h3>{cardData.title}</h3>
+                                <p>{cardData.description}</p>
+                            </FrontSide>
+                            <BackSide>
+                                <h3>{cardData.title}</h3>
+                                <p>{cardData.backDescription}</p>
+                                <CardButton>ORDER NOW →</CardButton>
+                            </BackSide>
+                        </CardInner>
+                    </ServiceCardStyled>
+                ))}
+            </ServicesContainer>
+
+
+            {/*Это старый и ёмкий вариант, который мне удалось сократить с помощью .map*/}
+
+            {/*<ServicesContainer>
+                <ServiceCardStyled>
                     <CardInner>
                         <FrontSide><Icon iconId="Advertising" width="74px" height="74px"/>
                             <h3>advertising</h3>
@@ -26,8 +99,8 @@ export const Services = () => {
                             <CardButton>ORDER NOW →</CardButton>
                         </BackSide>
                     </CardInner>
-                </ServiceCard>
-                <ServiceCard>
+                </ServiceCardStyled>
+                <ServiceCardStyled>
                     <CardInner>
                         <FrontSide><Icon iconId="Microphone" width="74px" height="74px"/>
                             <h3>sound design</h3>
@@ -39,8 +112,8 @@ export const Services = () => {
                             <CardButton>ORDER NOW →</CardButton>
                         </BackSide>
                     </CardInner>
-                </ServiceCard>
-                <ServiceCard>
+                </ServiceCardStyled>
+                <ServiceCardStyled>
                     <CardInner>
                         <FrontSide><Icon iconId="Photographer" width="74px" height="74px"/>
                             <h3>photography</h3>
@@ -52,12 +125,12 @@ export const Services = () => {
                             <CardButton>ORDER NOW →</CardButton>
                         </BackSide>
                     </CardInner>
-                </ServiceCard>
-                <ServiceCard>
+                </ServiceCardStyled>
+                <ServiceCardStyled>
                     <CardInner>
                         <FrontSide><Icon iconId="coding" width="74px" height="74px"/>
                             <h3>web development</h3>
-                            <p>blog, e-commerce4</p></FrontSide>
+                            <p>blog, e-commerce</p></FrontSide>
                         <BackSide>
                             <h3>web development</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla diam in ac dictum a
@@ -65,8 +138,8 @@ export const Services = () => {
                             <CardButton>ORDER NOW →</CardButton>
                         </BackSide>
                     </CardInner>
-                </ServiceCard>
-                <ServiceCard>
+                </ServiceCardStyled>
+                <ServiceCardStyled>
                     <CardInner>
                         <FrontSide><Icon iconId="game-development" width="74px" height="74px"/>
                             <h3>game design</h3>
@@ -78,8 +151,8 @@ export const Services = () => {
                             <CardButton>ORDER NOW →</CardButton>
                         </BackSide>
                     </CardInner>
-                </ServiceCard>
-                <ServiceCard>
+                </ServiceCardStyled>
+                <ServiceCardStyled>
                     <CardInner>
                         <FrontSide><Icon iconId="illustration" width="74px" height="74px"/>
                             <h3>uI/uX design</h3>
@@ -91,88 +164,9 @@ export const Services = () => {
                             <CardButton>ORDER NOW →</CardButton>
                         </BackSide>
                     </CardInner>
-                </ServiceCard>
-            </ServicesContainer>
+                </ServiceCardStyled>
+            </ServicesContainer>*/}
         </>
     )
 };
 
-export const CardButton = styled.a `
-    color: #FFB400;
-    font-weight: 700;
-    font-family: Roboto,serif;
-    &:hover {
-        cursor: pointer;
-    }
-        
-    
-`
-export const CardInner = styled.div`
-    width: 100%;
-    height: 100%;
-    position: relative;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-
-`;
-
-export const CardFace = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-
-    border-radius: 10px;
-`;
-
-export const FrontSide = styled(CardFace)`
-    background-color: #fff;
-`;
-
-export const BackSide = styled(CardFace)`
-    transform: rotateY(180deg);
-    background-color: #fff;
-`;
-
-
-export const ServicesContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    max-width: 970px;
-    gap: 2rem;
-    flex-wrap: wrap;
-
-`;
-
-export const ServiceCard = styled.div`
-    flex-basis: calc(33.3% - 2rem); /* Занимать ~1/3 ширины контейнера минус gap */
-    min-width: 280px; /* Минимальная ширина */
-    max-width: 310px; /* Максимальная ширина */
-    height: 225px; /* Фиксированная высота */
-    margin: 1rem 0; /* Отступы только сверху и снизу */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Распределение содержимого */
-    align-items: center;
-    background-color: #fff;
-    padding: 1.8rem;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-
-    &:hover ${CardInner} {
-        transform: rotateY(180deg);
-    }
-`;
