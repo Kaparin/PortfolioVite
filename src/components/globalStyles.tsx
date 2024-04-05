@@ -44,6 +44,8 @@ const GlobalStyle = createGlobalStyle`
         scroll-behavior: smooth;
         text-rendering: optimizeSpeed;
         background-color: #F0F0F6;
+        margin: 0 auto;
+        
 
     }
 
@@ -130,4 +132,5 @@ const GlobalStyle = createGlobalStyle`
     }
 
 `
+
 export default GlobalStyle;
